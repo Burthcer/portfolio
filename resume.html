@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dev Dheeren Bhamaria | Resume</title>
+<meta name="description" content="One-page resume of Dev Dheeren Bhamaria: BCA student and offline-first app developer (IHatePDF, Wisperno). Download as PDF.">
+<meta name="author" content="Dev Dheeren Bhamaria">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://burthcer.github.io/resume.html">
+<meta name="theme-color" content="#0c0c0b">
+<meta name="color-scheme" content="dark">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dev Dheeren Bhamaria">
+<meta property="og:title" content="Dev Dheeren Bhamaria | Resume">
+<meta property="og:description" content="One-page resume of Dev Dheeren Bhamaria: BCA student and offline-first app developer (IHatePDF, Wisperno). Download as PDF.">
+<meta property="og:url" content="https://burthcer.github.io/resume.html">
+<meta property="og:image" content="https://burthcer.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dev Dheeren Bhamaria: Own your software. A 3D floppy disk next to the headline.">
+<meta property="og:locale" content="en_IN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dev Dheeren Bhamaria | Resume">
+<meta name="twitter:description" content="One-page resume of Dev Dheeren Bhamaria: BCA student and offline-first app developer (IHatePDF, Wisperno). Download as PDF.">
+<meta name="twitter:image" content="https://burthcer.github.io/og-image.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="stylesheet" href="assets/css/resume.css">
+</head>
+<body>
+<div class="bar">
+  <a href="index.html" data-back>&larr; Portfolio</a>
+  <div>
+    <a class="dl" href="Dev-Bhamaria-Resume.pdf" download>Download PDF</a>
+    <a href="mailto:dev.bhamaria@gmail.com">Email me</a>
+  </div>
+</div>
+
+<main class="page">
+  <header>
+    <h1>Dev Dheeren Bhamaria</h1>
+    <p class="role">Offline-first app developer &middot; BCA student</p>
+    <p class="contact">
+      <a href="mailto:dev.bhamaria@gmail.com">dev.bhamaria@gmail.com</a>
+      <a href="https://github.com/Burthcer">github.com/Burthcer</a>
+      <a data-link="linkedin" href="#">LinkedIn</a>
+      <span>Navi Mumbai, Maharashtra, India</span>
+    </p>
+  </header>
+
+  <section>
+    <h2>Summary</h2>
+    <p>BCA student who builds free, open-source apps that run entirely on the user's own machine. Shipped a 28-tool PDF suite that works in the browser and as a Windows desktop app, and a GPU-accelerated offline dictation app for Windows. Comfortable across TypeScript, Python, WebAssembly and local AI inference, with a habit of measuring and testing what I ship.</p>
+  </section>
+
+  <section>
+    <h2>Projects</h2>
+    <article>
+      <div class="row"><h3>IHatePDF</h3><span class="meta">v1.3.1 &middot; github.com/Burthcer/IHatePDF</span></div>
+      <p class="stack">TypeScript, React, Vite, Tailwind, pdf-lib, pdf.js, WebAssembly, Electron</p>
+      <ul>
+        <li>Built 28 PDF tools (edit, merge, split, compress, convert, sign, redact, protect) that run fully client-side in the browser or as a Windows desktop app. No file is ever uploaded.</li>
+        <li>Wrote an in-place text editor that retypes a paragraph in the document's own font and removes the original characters instead of covering them.</li>
+        <li>Target-size compression: a 35.5 MB scan to 1.95 MB for a 2 MB target; a 500 MB scan compressed to 38.4 MB in 91 s on an 8 GB memory budget.</li>
+        <li>Added a memory fail-safe for low-RAM PCs and offline phone sharing over Wi-Fi, hotspot or Bluetooth. 80 automated and end-to-end checks passing; released with a Windows installer.</li>
+      </ul>
+    </article>
+    <article>
+      <div class="row"><h3>Wisperno</h3><span class="meta">github.com/Burthcer/Wisperno</span></div>
+      <p class="stack">Python 3.12, PySide6 (Qt), CUDA, faster-whisper, llama-cpp-python</p>
+      <ul>
+        <li>Push-to-talk dictation for Windows: transcribes locally with Whisper large-v3-turbo on CUDA and cleans the text with a quantized Qwen2.5-1.5B. No audio leaves the machine.</li>
+        <li>0.82 s end-to-end latency for 100 words at 113.8 tok/s decode, in about 3.5 GB of VRAM on the default preset.</li>
+        <li>Live transcription mode re-decodes the full unconfirmed buffer every 0.6 s at a real-time factor of 0.074 (about 13.5x real time), replacing a sliding-window design that silently dropped content.</li>
+        <li>Benchmarked four engine presets and upgraded llama-cpp-python from 0.2.90 to 0.3.26, making every preset 20 to 30% faster with no change in VRAM.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section>
+    <h2>Education</h2>
+    <div class="row"><h3>Bachelor of Computer Applications (BCA)</h3><span class="meta">Aug 2024 to 2029 (expected)</span></div>
+    <p>D Y Patil Deemed to be University, School of Humanities and Sciences, Navi Mumbai</p>
+  </section>
+
+  <section>
+    <h2>Skills</h2>
+    <dl class="skills">
+      <div><dt>Languages</dt><dd>TypeScript, JavaScript, Python</dd></div>
+      <div><dt>Engines and libraries</dt><dd>WebAssembly, pdf-lib, pdf.js, CUDA, faster-whisper, llama-cpp-python</dd></div>
+      <div><dt>Interfaces</dt><dd>React, Tailwind, PySide6 (Qt), Electron</dd></div>
+      <div><dt>Practice</dt><dd>Offline and air-gapped testing, benchmarking, threat modeling, reverse engineering, Git and GitHub</dd></div>
+    </dl>
+  </section>
+</main>
+<script src="assets/js/links.js"></script>
+<script src="assets/js/resume.js"></script>
+</body>
+</html>
