@@ -68,11 +68,11 @@ em { font-style: normal; }
 /* dock: a small drive bay the disk parks in; the filename slides out briefly on each new section */
 .dock {
   position: fixed; right: 16px; bottom: 16px; z-index: 29; width: 84px; height: 84px; padding: 0; cursor: pointer;
-  background: rgba(21, 21, 19, .9); border: 1px solid var(--hair); border-radius: 12px;
+  background: none; border: 0; border-radius: 12px;
   opacity: 0; pointer-events: none; transition: border-color .3s;
 }
 .dock.on { opacity: 1; pointer-events: auto; }
-.dock:hover { border-color: var(--acc); }
+.dock:hover { border-color: transparent; }
 .dock-slot { position: absolute; inset: 8px; }
 .dock-say {
   position: absolute; right: calc(100% + 10px); top: 50%; display: flex; align-items: baseline; gap: 3px;

@@ -91,8 +91,14 @@
     try { sessionStorage.setItem('p3d-booted', '1'); } catch (e) { /* ignore */ }
   }
   $$('[data-resume]').forEach(a => a.addEventListener('click', () => {
-    try { sessionStorage.setItem('p3d-to-resume', '1'); } catch (e) { /* ignore */ }
+    try { sessionStorage.setItem('p3d-to-resume', '1'); sessionStorage.setItem('p3d-scroll', String(Math.round(scrollY))); } catch (e) { /* ignore */ }
   }));
+  // back from the resume: put the page where it was (instant, not the smooth scroll the page uses for links)
+  try {
+    const y = +sessionStorage.getItem('p3d-scroll');
+    sessionStorage.removeItem('p3d-scroll');
+    if (y > 0) { history.scrollRestoration = 'manual'; addEventListener('load', () => requestAnimationFrame(() => scrollTo({ top: y, behavior: 'instant' }))); }
+  } catch (e) { /* storage blocked */ }
   const boot = $('#boot');
   if (reduce || !boot || seen) { if (boot) boot.remove(); begin(seen); }
   else {
@@ -433,14 +439,6 @@
     if (touring && !tourBar.contains(e.target) && !tourBtn.contains(e.target)) stopTour();
   }, { passive: true, capture: true }));
 
-  // magnetic buttons
-  if (finePointer && !reduce) $$('.mag').forEach(b => {
-    b.addEventListener('pointermove', e => {
-      const r = b.getBoundingClientRect();
-      b.style.transform = `translate(${(e.clientX - r.left - r.width / 2) * 0.22}px, ${(e.clientY - r.top - r.height / 2) * 0.3}px)`;
-    });
-    b.addEventListener('pointerleave', () => { b.style.transform = ''; });
-  });
 
   /* ================= scroll-linked motion ================= */
   const nav = $('.nav'), bar = $('.progress'), track = $('.marquee-track');
@@ -498,7 +496,7 @@
     drawDt += dt;
     // the full-screen WebGL canvas is the heaviest thing on the page: every frame while the disk moves (as fast as the
     // screen refreshes, so 60 on a 60 Hz monitor), otherwise at most ~60 times a second
-    const drawNow = disk3d && (disk3d.busy() || now - lastDraw >= 15);
+    const drawNow = disk3d && (dirty || disk3d.busy() || now - lastDraw >= 15);   // always on a frame that scrolled, or the scroll is missed
     if (drawNow) disk3d.read();
     domFrame(dt);
     if (drawNow) { disk3d.draw(now, drawDt); lastDraw = now; drawDt = 0; }
@@ -739,7 +737,13 @@
       // hero -> dock follows the first screen of scroll; later stops blend near the boundary
       if (idx === 0) segT = smooth(0.06, 0.8, scrollY / H);
       else if (idx < tops.length - 1) segT = smooth(0.45, 1, -tops[idx] / (tops[idx + 1] - tops[idx]));
-      if (H + scrollY >= root.scrollHeight - 4) { idx = order.length - 1; segT = 0; }
+
+      // the last move (dock <-> Contact) follows how much of the Contact section fills the view: the disk is big only
+      // while Contact is on screen, and heads back to the dock as soon as it starts to scroll away (it never lingers over Education)
+      if (wide() && idx >= tops.length - 2) {
+        idx = tops.length - 2;
+        segT = smooth(0.35, 0.8, (H - stops[tops.length - 1].getBoundingClientRect().top) / H);
+      }
       const k = order[segT > 0.5 ? Math.min(idx + 1, order.length - 1) : idx];
       if (k !== activeKey) setDisk(k);
     }
@@ -752,7 +756,7 @@
       tgt.sh = Math.max(A.sh + (B.sh - A.sh) * t, forceShutter ? 1 : 0);
       tgt.x = pa.x + (pb.x - pa.x) * t;
       tgt.y = pa.y + (pb.y - pa.y) * t;
-      tgt.s = pa.s + (pb.s - pa.s) * t;
+      tgt.s = pa.s + (pb.s - pa.s) * (B.mode === 'big' ? t * t : t);   // flying out to Contact: rise first, grow late, so it never pokes past the bottom edge
       tgt.dock = (isDock(A.mode) ? 1 : 0) * (1 - t) + (isDock(B.mode) ? 1 : 0) * t;
     }
     function setDisk(k) {
