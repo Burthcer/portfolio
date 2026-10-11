@@ -18,7 +18,7 @@
     readme: ['Hi, I\'m Dev. I build free, open-source apps that run with no internet at all.', 'Try: DIR, RUN IHATEPDF, TYPE MANIFESTO, RESUME, TOUR.'],
     manifesto: ['1. If it runs on my computer, it should work without the internet.', '2. Everyday tools shouldn\'t be a subscription.', '3. The safest upload is the one that never happens.'],
     stack: ['TypeScript, JavaScript, Python 3.12', 'WebAssembly, pdf-lib, pdf.js, CUDA, faster-whisper, llama-cpp-python', 'React, Tailwind, PySide6 (Qt), Electron'],
-    bca: ['Bachelor of Computer Applications, Aug 2024 to 2029 (expected)', 'D Y Patil Deemed to be University, School of Humanities and Sciences', 'Sector 4, CBD Belapur, Navi Mumbai']
+    bca: ['Bachelor of Computer Applications, Aug 2026 to 2029 (expected)', 'D Y Patil Deemed to be University, School of Humanities and Sciences', 'Sector 4, CBD Belapur, Navi Mumbai']
   };
   const COMMANDS = ['play', 'help', 'dir', 'run ihatepdf', 'run wisperno', 'type readme', 'type manifesto', 'type stack', 'type bca', 'resume', 'contact', 'tour', 'whoami', 'cls', 'exit'];
   const CHIPS = [['PLAY GAME', 'play'], ['DIR', 'dir'], ['IHATEPDF.EXE', 'run ihatepdf'], ['WISPERNO.EXE', 'run wisperno'], ['MANIFESTO.TXT', 'type manifesto'], ['RESUME.PDF', 'resume'], ['CONTACT', 'contact'], ['EXIT', 'exit']];
