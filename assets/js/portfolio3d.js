@@ -272,6 +272,9 @@
   /* ================= centering ================= */
   // Layout position (ignores reveal transforms, which would otherwise skew the maths by 36px).
   function docTop(el) { let y = 0; for (let e = el; e; e = e.offsetParent) y += e.offsetTop; return y; }
+  // Where the page rests at Contact: the heading ('Write to me.') just under the nav, never cut off. The footer below may run off the screen.
+  // On a tall screen the page ends first, so it stops at the very bottom as before.
+  function contactRest() { return Math.max(0, Math.min(root.scrollHeight - innerHeight, docTop($('#contact .sec-head')) - 96)); }
   // Scroll target that centres a group of elements in the visible band (below the nav,
   // above the bottom chrome). If the group is too tall, its top goes just under the nav.
   function centerY(els, where) {
@@ -303,8 +306,8 @@
     if (!target) return;
     e.preventDefault();
     const f = frameFor(target);
-    // Contact is the last section: go all the way down, so the laptop always arrives fully
-    scrollTo({ top: id === 'contact' ? root.scrollHeight : Math.max(0, centerY(f.els, f.where)), behavior: reduce ? 'auto' : 'smooth' });
+    // Contact is the last section: the laptop arrives fully there, with the heading in view
+    scrollTo({ top: id === 'contact' ? contactRest() : Math.max(0, centerY(f.els, f.where)), behavior: reduce ? 'auto' : 'smooth' });
     history.replaceState(null, '', '#' + id);
   });
 
@@ -436,7 +439,7 @@
       await wait(1400);
     } },
     { el: () => $('#contact'), name: 'Contact', run: async () => {
-      await glide(root.scrollHeight);   // Contact: the bottom of the page, where the laptop is fully out
+      await glide(contactRest());   // Contact: the heading in view, where the laptop is fully out
       const mail = $('.mail-big');
       await point(mail, 'Say hi', 0.5, 0.55);
       mail.classList.add('tour-hover');
@@ -1291,7 +1294,7 @@
       if (idx >= tops.length - 2) {
         idx = tops.length - 2;
         segT = wide()
-          ? 1 - smooth(0.015, 0.2, (root.scrollHeight - H - scrollY) / H)   // starts leaving with the first bit of scroll up from the bottom
+          ? 1 - smooth(0.015, 0.2, (contactRest() - scrollY) / H)   // starts leaving with the first bit of scroll up from where Contact rests
           : (r => smooth(0.15, 0.9, (H - r.top) / r.height))(cstageEl.getBoundingClientRect());
       }
       const k = order[segT > 0.5 ? Math.min(idx + 1, order.length - 1) : idx];
