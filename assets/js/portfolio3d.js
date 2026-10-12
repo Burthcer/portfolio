@@ -533,9 +533,11 @@
   nav.addEventListener('pointerleave', () => { if (!nav.classList.contains('hide')) armNavHide(); });
   nav.addEventListener('focusout', () => { if (!nav.classList.contains('hide')) armNavHide(); });
   nav.addEventListener('click', e => { if (e.target.closest('a')) { navMoved = 0; e.target.closest('a').blur(); armNavHide(800); } });
-  let W = document.documentElement.clientWidth, H = innerHeight, dirty = true, lastY = scrollY, navY = scrollY, vel = 0, dir = 1, mx = 0;
+  // the size of the 3D canvas is the one true size (it is fixed over the whole viewport); the page width can differ from it by the scrollbar
+  const viewSize = () => { const c = document.getElementById('disk'); return c && c.clientWidth ? [c.clientWidth, c.clientHeight] : [document.documentElement.clientWidth, innerHeight]; };
+  let [W, H] = viewSize(), dirty = true, lastY = scrollY, navY = scrollY, vel = 0, dir = 1, mx = 0;
   addEventListener('scroll', () => { dirty = true; }, { passive: true });
-  addEventListener('resize', () => { W = document.documentElement.clientWidth; H = innerHeight; dirty = true; });
+  addEventListener('resize', () => { [W, H] = viewSize(); dirty = true; });
   const progOf = r => clamp((H - r.top) / (H + r.height));
 
   function domFrame(dt) {
