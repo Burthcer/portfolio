@@ -1428,6 +1428,12 @@
     }
 
     addEventListener('resize', measure);
+    // The canvas is the truth. A scrollbar appearing or going away (the loading screen, an opened phone, a dialog) changes the width
+    // without a resize event, which left the 3D picture and the browser on its screen about 14px out of step. Re-measure whenever it changes.
+    if (window.ResizeObserver) new ResizeObserver(() => {
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      if (w && h && (w !== W || h !== H)) { W = w; H = h; measure(); dirty = true; }
+    }).observe(canvas);
     measure();
     // first paint: snap to wherever the page was opened (e.g. via #hash)
     dirty = true;

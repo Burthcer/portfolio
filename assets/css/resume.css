@@ -78,3 +78,6 @@ li::marker { color: var(--acc); }
   .bar .lg, .bar button.theme span { display: none; }
 }
 a, button { -webkit-tap-highlight-color: transparent; }
+
+.sam { margin: 0; padding: 8px clamp(14px, 4vw, 40px); background: #0c0c0b; color: #aaa79e; font: 400 12px/1.5 'JetBrains Mono', monospace; }
+@media print { .sam { display: none; } }

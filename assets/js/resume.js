@@ -27,6 +27,9 @@ if (window.self !== window.top) {
     root.dataset.theme = t;
     label.textContent = t === 'dark' ? 'Light' : 'Dark';
     btn.setAttribute('aria-label', t === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+    // Samsung Internet's forced dark mode darkens a light page and nothing on the page can stop it (tested on a phone): say so
+    const note = document.querySelector('.sam');
+    if (note) note.hidden = !(t === 'light' && /SamsungBrowser/.test(navigator.userAgent) && !root.classList.contains('embedded'));
   };
   let saved = null;
   try { saved = localStorage.getItem('resume-theme'); } catch (e) { /* storage blocked */ }
