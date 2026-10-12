@@ -881,3 +881,5 @@ html.game-on { overflow: hidden; }
 .li-proj:first-of-type { border-top: 0; padding-top: 0; }
 .sui.tall .li-feat { grid-template-columns: 1fr; }
 .dv-all { display: block; margin-top: 8px; padding: 10px 16px; border-radius: 8px; background: #171717; color: #8d97f5 !important; }
+a, button, [role="button"] { -webkit-tap-highlight-color: transparent; }   /* no blue box flashing on tap (Samsung Internet, Chrome on Android); keyboard focus keeps its outline */
+.btn, .nav-resume, .nav-menu, .nav-tour, .ptabs button, .vnav, .pf-next, .pindex a { -webkit-user-select: none; user-select: none; }

@@ -77,3 +77,4 @@ li::marker { color: var(--acc); }
   .bar a, .bar button.theme { padding: 9px 12px; font-size: 12px; white-space: nowrap; }
   .bar .lg, .bar button.theme span { display: none; }
 }
+a, button { -webkit-tap-highlight-color: transparent; }
