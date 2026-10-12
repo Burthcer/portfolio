@@ -141,6 +141,8 @@
 </button>
 
 <!-- the browser on the device's screen at Contact: real HTML laid onto the 3D screen, so it is sharp, clickable and scrollable -->
+<div class="phone-veil" id="phoneVeil" aria-hidden="true"></div>
+<button class="phone-close" id="phoneClose" type="button" aria-label="Close phone"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
 <div class="sui" id="sui" aria-label="Browser on the laptop screen" hidden>
   <div class="sui-tabs" role="tablist">
     <button type="button" role="tab" data-tab="mail" data-short="Gmail" aria-selected="false"><i class="fav fav-mail" aria-hidden="true"></i><span>New Message - Gmail</span></button>
@@ -149,6 +151,22 @@
     <button type="button" role="tab" data-tab="linkedin" data-short="LinkedIn" aria-selected="false"><i class="fav fav-li" aria-hidden="true">in</i><span>LinkedIn | Dev Bhamaria</span></button>
     <button type="button" role="tab" data-tab="devto" data-short="DEV" aria-selected="false"><i class="fav fav-dv" aria-hidden="true">DEV</i><span>DEV Community | Dev Bhamaria</span></button>
   </div>
+  <div class="cm-status" aria-hidden="true"><span class="cm-time" data-clock>9:41</span><i class="cm-hole"></i><span class="cm-sys"><svg viewBox="0 0 24 16"><path d="M2 6.2a14 14 0 0 1 20 0M5 9.4a9.4 9.4 0 0 1 14 0M8.4 12.4a4.6 4.6 0 0 1 7.2 0"/></svg><svg viewBox="0 0 24 16"><path d="M3 13V11M8 13V8M13 13V5M18 13V2"/></svg><svg viewBox="0 0 28 16"><rect x="2" y="3" width="21" height="10" rx="2.5"/><path d="M25 6.5v3"/><rect class="fill" x="4" y="5" width="14" height="6" rx="1"/></svg></span></div>
+  <div class="cm-bar">
+    <div class="cm-url"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="7" width="9" height="6.5" rx="1.6"/><path d="M5.5 7V5.4a2.5 2.5 0 0 1 5 0V7"/></svg><span data-url>github.com/Burthcer</span></div>
+    <button type="button" class="cm-count" data-cm="switcher" aria-label="Switch tabs"><span data-tabs-n>5</span></button>
+    <button type="button" class="cm-more" data-cm="menu" aria-label="More options" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="3" r="1.4"/><circle cx="8" cy="8" r="1.4"/><circle cx="8" cy="13" r="1.4"/></svg></button>
+  </div>
+  <div class="cm-pop" role="menu" hidden>
+    <a role="menuitem" class="cm-item" data-open href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">Open in your browser</a>
+    <button role="menuitem" type="button" class="cm-item" data-cm="reload">Reload page</button>
+    <button role="menuitem" type="button" class="cm-item" data-cm="close">Close phone</button>
+  </div>
+  <div class="cm-switcher" hidden>
+    <div class="cm-sw-h"><b data-sw-title>5 tabs</b><button type="button" data-cm="sw-close">Done</button></div>
+    <div class="cm-grid" data-grid></div>
+  </div>
+  <p class="cm-toast" hidden>Swipe the address bar to change tab</p>
   <div class="sui-bar">
     <button type="button" class="sui-ic" data-act="back" aria-label="Back" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5M5 8h8"/></svg></button>
     <button type="button" class="sui-ic" data-act="fwd" aria-label="Forward" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5M11 8H3"/></svg></button>
@@ -654,6 +672,7 @@ Best regards,
         <a class="btn mag" data-link="linkedin" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer" data-shows="linkedin"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn <span aria-hidden="true">&nearr;</span></a>
         <a class="btn mag" data-link="devto" href="https://dev.to/burthcer" target="_blank" rel="noopener noreferrer" data-shows="devto"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5 3h14a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM5.2 8.6v6.8h1.7c1.5 0 2.3-1.3 2.3-3.4S8.400 8.600 6.900 8.600H5.200zm1.200 1.100h.5c.8 0 1.200.9 1.200 2.300S7.700 14.300 6.900 14.300h-.5V9.700zM10.600 8.600v6.800h3.200v-1.100h-2V12.500h1.700v-1.100h-1.700V9.700h2V8.600h-3.200zM14.600 8.600l1.700 6.800h1.300l1.700-6.800h-1.300l-1 4.600-1.100-4.600h-1.300z"/></svg>DEV <span aria-hidden="true">&nearr;</span></a>
       </div>
+      <p class="phone-hint">Or tap the phone in the corner: it opens my browser, with my Gmail, resume, GitHub, LinkedIn and DEV.</p>
       <div class="contact-stage" id="contactStage" aria-hidden="true"></div>
     </div>
     <footer class="foot">

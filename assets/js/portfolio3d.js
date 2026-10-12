@@ -1183,10 +1183,9 @@
       uiTab = t;
       suiTabs.forEach(b => b.setAttribute('aria-selected', b.dataset.tab === t));
       suiPages.forEach(pg => { pg.hidden = pg.dataset.page !== t; });
-      $('[data-url]', sui).textContent = TAB[t][0];
-      const o = $('[data-open]', sui);
-      o.href = TAB[t][1];
-      if (t === 'mail') o.removeAttribute('target'); else o.target = '_blank';
+      $$('[data-url]', sui).forEach(u => { u.textContent = TAB[t][0]; });
+      $$('[data-open]', sui).forEach(o => { o.href = TAB[t][1]; if (t === 'mail') o.removeAttribute('target'); else o.target = '_blank'; });
+      $$('[data-card]', sui).forEach(c => c.setAttribute('aria-current', c.dataset.card === t));
       if (t === 'resume') { const f = $('iframe', sui); if (!f.src) f.src = f.dataset.src; }   // load the resume only when asked for
     }
     suiTabs.forEach(b => b.addEventListener('click', () => setTab(b.dataset.tab)));
@@ -1256,6 +1255,16 @@
     let slot = { x: 0, y: 0, s: 100 }, stage = { x: 0, y: 0, s: 100 }, cstage = { x: 0, y: 0, s: 100 };
     const stageEl = $('#heroStage'), cstageEl = $('#contactStage');
     const wide = () => W >= 900;
+    // phones: tap the parked phone at Contact and it comes forward, big, with a Chrome-style browser on its screen
+    // po: how open it is (0..1); pt: progress of the current open/close move; pFrom: where that move started.
+    // The move is a fixed, eased timeline (not a chase), so it can't wobble or overshoot.
+    let phoneOpen = false, po = 0, pt = 1, pFrom = null;
+    // facing straight at you; ry keeps the same whole turn as the parked pose, so it never spins round to get there
+    const openTarget = ry => { const P = phonePose(); return { x: P.x, y: P.y, s: P.s, rx: 0, ry: Math.round(ry / (2 * Math.PI)) * 2 * Math.PI, rz: 0, dock: 0 }; };
+    const phonePose = () => {
+      const hpx = Math.min(H - 84, (W - 36) * 16.23 / 7.9);   // leaves a border all round; the top gap holds the close button
+      return { x: W / 2, y: H / 2 + 18, s: hpx * dev.KH / 16.23 };
+    };
     const isDock = m => m === 'dock' || (m !== 'dock' && !wide());   // phones: the device always stays parked in the corner (no room to show it big)
     function pose(m) {
       if (m === 'hero') return wide() ? { x: W * 0.74, y: H * 0.5, s: Math.min(H * 0.52, W * 0.26) } : slot;
@@ -1269,6 +1278,7 @@
       camera.aspect = W / H;
       camera.updateProjectionMatrix();
       dev = wide() ? LAPTOP : PHONE;   // laptop on desktop, phone on phones
+      if (wide() && phoneOpen) { phoneOpen = false; po = 0; pt = 1; root.classList.remove('phone-open', 'phone-z'); }   // turned the phone sideways into laptop layout
       LAPTOP.rig.visible = dev === LAPTOP; PHONE.rig.visible = dev === PHONE;
       const r = $('#dockSlot').getBoundingClientRect();
       slot = { x: r.left + r.width * dev.dockNudge.x, y: r.top + r.height * dev.dockNudge.y, s: r.height * dev.dockFit };
@@ -1312,6 +1322,7 @@
       tgt.y = pa.y + (pb.y - pa.y) * t;
       tgt.s = pa.s + (pb.s - pa.s) * (B.mode === 'big' ? t * t : t);   // flying out to Contact: rise first, grow late, so it never pokes past the bottom edge
       tgt.dock = (isDock(A.mode) ? 1 : 0) * (1 - t) + (isDock(B.mode) ? 1 : 0) * t;
+      if (!wide() && phoneOpen && pt >= 1) Object.assign(tgt, openTarget(tgt.ry));   // opened: hold it straight and still in the middle
     }
     function setScreen(k) {
       activeKey = k;
@@ -1338,7 +1349,89 @@
       return true;
     }
     // the parked device opens the page on its screen; with nothing to open it goes back to the top
-    dockEl.addEventListener('click', () => { if (!openShown()) scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+    dockEl.addEventListener('click', () => {
+      if (!wide() && DISKS[activeKey].land === 'contact') { setPhone(true); return; }
+      if (!openShown()) scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    });
+
+    // ---- the opened phone: veil, close button, history (the phone's back button closes it), Escape ----
+    const closeBtn = $('#phoneClose');
+    function setPhone(v) {
+      if (v === phoneOpen || wide()) return;
+      phoneOpen = v;
+      pFrom = { ...cur };
+      pt = reduce ? 1 : 0;
+      root.classList.toggle('phone-open', v);
+      if (v) {
+        root.classList.add('phone-z');
+        try { history.pushState({ phone: 1 }, ''); } catch (e) { /* ignore */ }
+        closeBtn.focus({ preventScroll: true });
+        cmReset(); cmToast();
+      } else { cmReset(); }
+      dirty = true;
+    }
+    const closePhone = () => { if (!phoneOpen) return; if (history.state && history.state.phone) history.back(); else setPhone(false); };
+    addEventListener('popstate', () => { if (phoneOpen) setPhone(false); });
+    closeBtn.addEventListener('click', closePhone);
+    $('#phoneVeil').addEventListener('click', closePhone);
+    addEventListener('keydown', e => { if (e.key === 'Escape' && phoneOpen) closePhone(); });
+
+    // ---- Chrome-style controls on the phone screen ----
+    const cmPop = $('.cm-pop', sui), cmSw = $('.cm-switcher', sui), cmGrid = $('[data-grid]', sui), cmT = $('.cm-toast', sui);
+    const order5 = suiTabs.map(b => b.dataset.tab);
+    suiTabs.forEach(b => {
+      const c = document.createElement('button');
+      c.type = 'button'; c.className = 'cm-card'; c.dataset.card = b.dataset.tab;
+      c.innerHTML = '<span class="cm-card-h"></span><span class="cm-card-b"></span>';
+      $('.cm-card-h', c).append($('.fav', b).cloneNode(true), Object.assign(document.createElement('b'), { textContent: $('span', b).textContent }));
+      $('.cm-card-b', c).textContent = TAB[b.dataset.tab][0];
+      c.addEventListener('click', () => { setTab(b.dataset.tab); cmSw.hidden = true; });
+      cmGrid.append(c);
+    });
+    $('[data-tabs-n]', sui).textContent = order5.length;
+    $('[data-sw-title]', sui).textContent = order5.length + ' tabs';
+    $$('[data-card]', sui).forEach(c => c.setAttribute('aria-current', c.dataset.card === uiTab));
+    function cmReset() { cmPop.hidden = true; cmSw.hidden = true; $('[data-cm="menu"]', sui).setAttribute('aria-expanded', 'false'); }
+    let toastDone = false;
+    function cmToast() {
+      if (toastDone) return;
+      toastDone = true;
+      setTimeout(() => { cmT.hidden = false; setTimeout(() => { cmT.hidden = true; }, 2800); }, 1200);
+    }
+    sui.addEventListener('click', e => {
+      const b = e.target.closest('[data-cm]');
+      if (!b) { if (!e.target.closest('.cm-pop')) cmPop.hidden = true; return; }
+      const k = b.dataset.cm;
+      if (k === 'switcher') { cmPop.hidden = true; cmSw.hidden = false; const c = $('[data-card][aria-current="true"]', sui); if (c) c.focus({ preventScroll: true }); }
+      else if (k === 'sw-close') cmSw.hidden = true;
+      else if (k === 'menu') { cmPop.hidden = !cmPop.hidden; b.setAttribute('aria-expanded', String(!cmPop.hidden)); }
+      else if (k === 'reload') { navBtn('reload').click(); cmPop.hidden = true; }
+      else if (k === 'close') { cmPop.hidden = true; closePhone(); }
+    });
+    // swipe the address bar sideways to change tab, like Chrome on a phone
+    (() => {
+      const bar = $('.cm-bar', sui);
+      let x0 = null, y0 = 0;
+      const go = d => {
+        const n = order5.indexOf(uiTab) + d;
+        if (n < 0 || n >= order5.length) return;
+        setTab(order5[n]);
+        const pg = $(`[data-page="${uiTab}"]`, sui);
+        if (pg.animate && !reduce) pg.animate([{ transform: `translateX(${d * 46}px)`, opacity: 0.2 }, { transform: 'none', opacity: 1 }], { duration: 260, easing: 'cubic-bezier(.2,.7,.2,1)' });
+      };
+      bar.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; x0 = e.clientX; y0 = e.clientY; });
+      bar.addEventListener('pointerup', e => {
+        if (x0 === null) return;
+        const dx = e.clientX - x0, dy = e.clientY - y0;
+        x0 = null;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) go(dx < 0 ? 1 : -1);
+      });
+      bar.addEventListener('pointercancel', () => { x0 = null; });
+    })();
+    // the clock on the phone's status bar
+    const clock = () => { const t = new Date(); $('[data-clock]', sui).textContent = (t.getHours() % 12 || 12) + ':' + String(t.getMinutes()).padStart(2, '0'); };
+    clock();
+    setInterval(clock, 20000);
 
     const pointer = { x: 0, y: 0 }, pcur = { x: 0, y: 0 };
 
@@ -1367,9 +1460,20 @@
 
     function draw(now, dt) {
       target();
-      const k = reduce ? 1 : 1 - Math.pow(0.003, dt);
-      for (const p in tgt) cur[p] += (tgt[p] - cur[p]) * k;
-      if (!wide() && tgt.dock < 0.01 && cur.dock < 0.05) { cur.x = tgt.x; cur.y = tgt.y; cur.s = tgt.s; }
+      if (!wide() && pt < 1 && pFrom) {
+        // opening / closing the phone: one eased move from where it was to where it goes, with a small turn in flight
+        pt = Math.min(1, pt + dt / (phoneOpen ? 0.55 : 0.3));
+        const e = pt < 0.5 ? 4 * pt * pt * pt : 1 - Math.pow(-2 * pt + 2, 3) / 2, to = phoneOpen ? openTarget(tgt.ry) : tgt;
+        for (const p in to) cur[p] = pFrom[p] + (to[p] - pFrom[p]) * e;
+        cur.ry += Math.sin(Math.PI * e) * (phoneOpen ? -0.3 : 0.3);
+        po = phoneOpen ? e : 1 - e;
+        if (pt >= 1 && !phoneOpen) root.classList.remove('phone-z');
+      } else {
+        const k = reduce ? 1 : 1 - Math.pow(0.003, dt);
+        for (const p in tgt) cur[p] += (tgt[p] - cur[p]) * k;
+        if (!wide() && tgt.dock < 0.01 && cur.dock < 0.05) { cur.x = tgt.x; cur.y = tgt.y; cur.s = tgt.s; }
+        if (!wide()) po = phoneOpen ? 1 : 0;
+      }
       pcur.x += (pointer.x - pcur.x) * Math.min(1, dt * 4);
       pcur.y += (pointer.y - pcur.y) * Math.min(1, dt * 4);
 
@@ -1380,6 +1484,7 @@
       const ie = out3(ip), lidIn = reduce ? 1 : soft(clamp((ip - 0.2) / 0.6));
       const atContact = DISKS[activeKey].land === 'contact' && cur.dock < 0.05;
       calm += ((atContact ? 1 : 0) - calm) * Math.min(1, dt * 4);
+      if (!wide() && po > 0) calm = 1;   // no idle float or finger tilt while the phone is opening, open or closing
       const tt = now / 1000, idle = reduce ? 0 : 1, free = (1 - cur.dock * 0.7) * (1 - calm);
       const visH = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360), visW = visH * camera.aspect;
       const sc = Math.max(1e-3, cur.s / H * visH / dev.KH), rig = dev.rig;
@@ -1423,10 +1528,11 @@
       // moving (or fading/intro): draw every frame so it keeps pace with the page on 120/240 Hz screens
       busy = ip < 1 || fade < 1 || Math.abs(tgt.x - cur.x) + Math.abs(tgt.y - cur.y) + Math.abs(tgt.s - cur.s) > 0.4 ||
         Math.abs(tgt.rx - cur.rx) + Math.abs(tgt.ry - cur.ry) > 0.003 || Math.abs(pointer.x - pcur.x) + Math.abs(pointer.y - pcur.y) > 0.01 ||
-        Math.abs((atContact ? 1 : 0) - calm) > 0.01;
+        Math.abs((atContact ? 1 : 0) - calm) > 0.01 || (!wide() && pt < 1);
       renderer.render(scene, camera);
       // the real browser lies on the screen once the device has settled at Contact (it follows it while the page scrolls)
-      placeUI(atContact && s !== 'type' && ip >= 1 && calm > 0.97 && Math.abs(tgt.s - cur.s) < 2 && Math.abs(tgt.ry - cur.ry) < 0.02);
+      // laptop: once it has settled at Contact. Phone: the whole time it is opening, open or closing, so the screen never swaps picture mid-move
+      placeUI(wide() ? atContact && s !== 'type' && ip >= 1 && calm > 0.97 && Math.abs(tgt.s - cur.s) < 2 && Math.abs(tgt.ry - cur.ry) < 0.02 : po > 0.001 && DISKS[activeKey].land === 'contact');
     }
 
     addEventListener('resize', measure);

@@ -881,6 +881,51 @@ html.game-on { overflow: hidden; }
 .li-proj:first-of-type { border-top: 0; padding-top: 0; }
 .sui.tall .li-feat { grid-template-columns: 1fr; }
 .dv-all { display: block; margin-top: 8px; padding: 10px 16px; border-radius: 8px; background: #171717; color: #8d97f5 !important; }
+
+/* ---------- phones: tap the parked phone at Contact and it opens big, with a Chrome-style browser ---------- */
+.phone-veil { position: fixed; inset: 0; z-index: 61; background: rgba(4, 4, 3, .84); opacity: 0; pointer-events: none; transition: opacity .45s; }
+.phone-close { position: fixed; top: 12px; right: 14px; z-index: 64; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid var(--ink3); border-radius: 50%; background: var(--bg); color: var(--ink); cursor: pointer; opacity: 0; pointer-events: none; transition: opacity .35s; }
+.phone-close svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; }
+.phone-open .phone-veil, .phone-open .phone-close { opacity: 1; pointer-events: auto; }
+.phone-z #disk { z-index: 62; }
+.phone-z .sui { z-index: 63; }
+html.phone-open, html.phone-open body { overflow: hidden; overscroll-behavior: none; }
+.phone-hint { display: none; }
+@media (min-width: 900px) { .phone-veil, .phone-close { display: none; } }
+@media (max-width: 899px) { .phone-hint { display: block; margin: 18px 0 0; max-width: 34ch; color: var(--ink2); font: 400 12.5px/1.55 var(--mono); } }
+
+/* Chrome-style controls: only on the phone's screen */
+.cm-status, .cm-bar, .cm-pop, .cm-switcher, .cm-toast { display: none; }
+.sui.tall .sui-tabs, .sui.tall .sui-bar { display: none; }
+.sui.tall .cm-status { position: relative; display: flex; align-items: center; justify-content: space-between; flex: none; height: 32px; padding: 0 22px; background: #202124; color: #e8eaed; font: 600 12.5px var(--sans); }
+.cm-hole { position: absolute; left: 50%; top: 9px; width: 11px; height: 11px; border-radius: 50%; background: #000; transform: translateX(-50%); }
+.cm-sys { display: flex; align-items: center; gap: 6px; }
+.cm-sys svg { height: 11px; width: auto; fill: none; stroke: #e8eaed; stroke-width: 1.7; stroke-linecap: round; }
+.cm-sys .fill { fill: #e8eaed; stroke: none; }
+.sui.tall .cm-bar { display: flex; align-items: center; flex: none; gap: 8px; padding: 6px 10px 8px; background: #202124; }
+.cm-url { display: flex; align-items: center; flex: 1; gap: 8px; min-width: 0; height: 40px; padding: 0 14px; overflow: hidden; border-radius: 20px; background: #303134; color: #e8eaed; font-size: 14px; white-space: nowrap; touch-action: pan-y; }
+.cm-url svg { flex: none; width: 14px; height: 14px; fill: none; stroke: #bdc1c6; stroke-width: 1.3; }
+.cm-url span { overflow: hidden; text-overflow: ellipsis; }
+.cm-count { display: grid; place-items: center; flex: none; width: 30px; height: 30px; padding: 0; border: 2px solid #e8eaed; border-radius: 8px; background: none; color: #e8eaed; font: 700 13px var(--sans); cursor: pointer; }
+.cm-more { display: grid; place-items: center; flex: none; width: 34px; height: 40px; padding: 0; border: 0; background: none; color: #e8eaed; cursor: pointer; }
+.cm-more svg { width: 18px; height: 18px; fill: currentColor; }
+.sui.tall .cm-pop:not([hidden]) { display: block; position: absolute; top: 84px; right: 10px; z-index: 5; min-width: 210px; padding: 6px 0; border-radius: 12px; background: #303134; box-shadow: 0 8px 28px rgba(0, 0, 0, .6); }
+.cm-item { display: block; width: 100%; padding: 13px 18px; border: 0; background: none; color: #e8eaed; font: 400 15px var(--sans); text-align: left; text-decoration: none; cursor: pointer; }
+.cm-item:active { background: #3c4043; }
+.sui.tall .cm-switcher:not([hidden]) { position: absolute; inset: 32px 0 0 0; z-index: 6; display: flex; flex-direction: column; background: #202124; }
+.cm-sw-h { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; color: #e8eaed; font-size: 16px; }
+.cm-sw-h button { padding: 8px 14px; border: 0; border-radius: 99px; background: #303134; color: #8ab4f8; font: 600 14px var(--sans); cursor: pointer; }
+.cm-grid { display: grid; flex: 1; grid-template-columns: 1fr 1fr; align-content: start; gap: 10px; padding: 4px 12px 16px; overflow-y: auto; }
+.cm-card { display: flex; flex-direction: column; min-height: 150px; padding: 0; overflow: hidden; border: 2px solid transparent; border-radius: 14px; background: #303134; color: #e8eaed; text-align: left; cursor: pointer; }
+.cm-card[aria-current="true"] { border-color: #8ab4f8; }
+.cm-card-h { display: flex; align-items: center; gap: 8px; padding: 10px; background: #3c4043; font-size: 13px; }
+.cm-card-h b { overflow: hidden; font-weight: 500; text-overflow: ellipsis; white-space: nowrap; }
+.cm-card-b { display: grid; flex: 1; place-items: center; padding: 10px; color: #bdc1c6; font-size: 12px; text-align: center; word-break: break-all; }
+.sui.tall .cm-toast:not([hidden]) { display: block; position: absolute; left: 50%; bottom: 28px; z-index: 7; margin: 0; padding: 9px 16px; border-radius: 99px; background: #e8eaed; color: #202124; font: 500 13px var(--sans); white-space: nowrap; transform: translateX(-50%); }
+
+/* no blue tap flash or copy/select callout when tapping the phone or its controls */
+.dock, .phone-close, .phone-veil, .sui.tall button, .sui.tall .cm-bar, .sui.tall .cm-status { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
+.sui.tall { transition: none; }   /* on the phone it rides along with the device from the first frame, no fade */
 a, button, [role="button"] { -webkit-tap-highlight-color: transparent; }   /* no blue box flashing on tap (Samsung Internet, Chrome on Android); keyboard focus keeps its outline */
 .btn, .nav-resume, .nav-menu, .nav-tour, .ptabs button, .vnav, .pf-next, .pindex a { -webkit-user-select: none; user-select: none; }
 
