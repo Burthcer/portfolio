@@ -4,6 +4,7 @@
 window.SITE_LINKS = {
   linkedin: 'https://www.linkedin.com/in/dev-bhamaria-22b1503ab',
   github: 'https://github.com/Burthcer',
+  devto: 'https://dev.to/burthcer',
   email: 'mailto:dev.bhamaria@gmail.com'
 };
 

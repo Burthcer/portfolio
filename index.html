@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dev Dheeren Bhamaria | Offline-first apps: IHatePDF and Wisperno</title>
-<meta name="description" content="Dev Bhamaria, BCA student and developer. I build free, offline-first software: IHatePDF (28 PDF tools, no uploads) and Wisperno (offline GPU dictation).">
-<meta name="author" content="Dev Dheeren Bhamaria">
+<title>Dev Bhamaria | Offline-first apps: IHatePDF and Wisperno</title>
+<meta name="description" content="Dev Bhamaria is a BCA student who builds free, open-source apps that work with no internet: IHatePDF (28 PDF tools that never upload your file) and Wisperno (offline GPU dictation for Windows).">
+<meta name="author" content="Dev Bhamaria">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://devbhamaria.com/">
 <meta name="theme-color" content="#0c0c0b">
 <meta name="color-scheme" content="dark">
 <meta property="og:type" content="profile">
-<meta property="og:site_name" content="Dev Dheeren Bhamaria">
-<meta property="og:title" content="Dev Dheeren Bhamaria | Offline-first apps: IHatePDF and Wisperno">
-<meta property="og:description" content="Dev Bhamaria, BCA student and developer. I build free, offline-first software: IHatePDF (28 PDF tools, no uploads) and Wisperno (offline GPU dictation).">
+<meta property="og:site_name" content="Dev Bhamaria">
+<meta property="og:title" content="Dev Bhamaria | Offline-first apps: IHatePDF and Wisperno">
+<meta property="og:description" content="Dev Bhamaria is a BCA student who builds free, open-source apps that work with no internet: IHatePDF (28 PDF tools that never upload your file) and Wisperno (offline GPU dictation for Windows).">
 <meta property="og:url" content="https://devbhamaria.com/">
 <meta property="og:image" content="https://devbhamaria.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Dev Dheeren Bhamaria: Own your software. A 3D floppy disk next to the headline.">
+<meta property="og:image:alt" content="Dev Bhamaria: Own your software. A 3D laptop next to the headline.">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Dev Dheeren Bhamaria | Offline-first apps: IHatePDF and Wisperno">
-<meta name="twitter:description" content="Dev Bhamaria, BCA student and developer. I build free, offline-first software: IHatePDF (28 PDF tools, no uploads) and Wisperno (offline GPU dictation).">
+<meta name="twitter:title" content="Dev Bhamaria | Offline-first apps: IHatePDF and Wisperno">
+<meta name="twitter:description" content="Dev Bhamaria is a BCA student who builds free, open-source apps that work with no internet: IHatePDF (28 PDF tools that never upload your file) and Wisperno (offline GPU dictation for Windows).">
 <meta name="twitter:image" content="https://devbhamaria.com/og-image.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
@@ -35,7 +35,7 @@
   {
    "@type": "Person",
    "@id": "https://devbhamaria.com/#dev",
-   "name": "Dev Dheeren Bhamaria",
+   "name": "Dev Bhamaria",
    "alternateName": "Burthcer",
    "url": "https://devbhamaria.com/",
    "image": "https://devbhamaria.com/og-image.png",
@@ -67,14 +67,16 @@
     "Speech recognition"
    ],
    "sameAs": [
-    "https://github.com/Burthcer"
+    "https://github.com/Burthcer",
+    "https://www.linkedin.com/in/dev-bhamaria-22b1503ab",
+    "https://dev.to/burthcer"
    ]
   },
   {
    "@type": "WebSite",
    "@id": "https://devbhamaria.com/#site",
    "url": "https://devbhamaria.com/",
-   "name": "Dev Dheeren Bhamaria",
+   "name": "Dev Bhamaria",
    "inLanguage": "en",
    "author": {
     "@id": "https://devbhamaria.com/#dev"
@@ -132,37 +134,171 @@
 
 <div class="progress" aria-hidden="true"></div>
 <canvas id="disk" aria-hidden="true"></canvas>
-<div class="callouts" aria-hidden="true">
-  <div class="co" data-co="shutter"><i></i><s></s><span>Metal shutter</span></div>
-  <div class="co" data-co="media"><i></i><s></s><span>Magnetic media</span></div>
-  <div class="co" data-co="label"><i></i><s></s><span>Click the disk to play</span></div>
-</div>
-<!-- the disk parks here after the hero; click to eject back to the top -->
+<!-- the laptop parks here after the hero; click to go back to the top -->
 <button class="dock" id="dock" type="button" aria-label="Back to top" tabindex="-1">
   <span class="dock-slot" id="dockSlot"></span>
-  <span class="dock-say" aria-hidden="true"><span class="drv">A:\</span><span id="capName">README.TXT</span><span class="cur"></span></span>
+  <span class="dock-say" aria-hidden="true"><span class="drv">C:\</span><span id="capName">README.TXT</span><span class="cur"></span></span>
 </button>
+
+<!-- the browser on the device's screen at Contact: real HTML laid onto the 3D screen, so it is sharp, clickable and scrollable -->
+<div class="sui" id="sui" aria-label="Browser on the laptop screen" hidden>
+  <div class="sui-tabs" role="tablist">
+    <button type="button" role="tab" data-tab="mail" data-short="Gmail" aria-selected="false"><i class="fav fav-mail" aria-hidden="true"></i><span>New Message - Gmail</span></button>
+    <button type="button" role="tab" data-tab="resume" data-short="Resume" aria-selected="false"><i class="fav fav-cv" aria-hidden="true">D</i><span>Resume | Dev Bhamaria</span></button>
+    <button type="button" role="tab" data-tab="profile" data-short="GitHub" aria-selected="true"><i class="fav fav-gh" aria-hidden="true"></i><span>Burthcer &middot; GitHub</span></button>
+    <button type="button" role="tab" data-tab="linkedin" data-short="LinkedIn" aria-selected="false"><i class="fav fav-li" aria-hidden="true">in</i><span>LinkedIn | Dev Bhamaria</span></button>
+    <button type="button" role="tab" data-tab="devto" data-short="DEV" aria-selected="false"><i class="fav fav-dv" aria-hidden="true">DEV</i><span>DEV Community | Dev Bhamaria</span></button>
+  </div>
+  <div class="sui-bar">
+    <button type="button" class="sui-ic" data-act="back" aria-label="Back" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9.5 3.5 5 8l4.5 4.5M5 8h8"/></svg></button>
+    <button type="button" class="sui-ic" data-act="fwd" aria-label="Forward" disabled><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6.5 3.5 11 8l-4.5 4.5M11 8H3"/></svg></button>
+    <button type="button" class="sui-ic" data-act="reload" aria-label="Reload"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M12.6 6A5 5 0 1 0 13 9.5M13 3v3h-3"/></svg></button>
+    <span class="sui-url"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="4" y="7.2" width="8" height="5.8" rx="1.4"/><path d="M5.8 7.2V5.6a2.2 2.2 0 0 1 4.4 0v1.6"/></svg><span data-url>github.com/Burthcer</span></span>
+    <a class="sui-open" data-open href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">Open<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 4h6v6M12 4l-7.5 7.5"/></svg></a>
+  </div>
+  <div class="sui-page gm" data-page="mail" hidden>
+    <form class="gm-form" data-mail>
+      <div class="gm-h">New Message</div>
+      <div class="gm-row"><span>To</span><b class="gm-chip"><i aria-hidden="true">D</i>dev.bhamaria@gmail.com</b></div>
+      <label class="gm-row"><span>Subject</span><input name="subject" value="Opportunity to work together" autocomplete="off"></label>
+      <textarea name="body" rows="7" aria-label="Message">Hi Dev,
+
+I came across your portfolio and liked your work on IHatePDF and Wisperno. We have an opening I think you would be a good fit for, and I would like to tell you more about it.
+
+Are you free for a short call this week?
+
+Best regards,
+</textarea>
+      <div class="gm-foot"><button type="submit">Send</button><small>Opens your own email app with this message. Nothing is sent from this page.</small></div>
+    </form>
+  </div>
+  <div class="sui-page gh" data-page="profile">
+<!-- gh:start -->
+<div class="gh-top"><svg class="gh-mark" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg></div>
+    <div class="gh-prof"><img src="assets/projects/gh-avatar.png" alt="" width="64" height="64"><div><b>Dev Bhamaria</b><span>Burthcer &middot; 3 followers &middot; 2 following</span><span class="gh-bio">Open-source developer building free, offline-first software: IHatePDF, Wisperno. BCA student, Navi Mumbai.</span><span>Navi Mumbai, India</span></div><a class="gh-follow" href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">Follow</a></div>
+    <nav class="gh-tabs" aria-label="GitHub profile"><button type="button" data-gh="overview" aria-current="page">Overview</button><button type="button" data-gh="repos">Repositories <em>6</em></button></nav>
+    <div class="gh-view" data-gh-view="overview"><article class="gh-readme"><div class="gh-readme-h">Burthcer / README.md</div>
+<h1>Hi, I&#39;m Dev</h1>
+<p>I&#39;m a first-year BCA student in Navi Mumbai. I build free, open-source software that works offline: no uploads, no accounts, no subscriptions.</p>
+<h2>Projects</h2>
+<p><strong><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/IHatePDF">IHatePDF</a></strong> (v1.3.1, still in progress)</p>
+<p>28 PDF tools that run in the browser or as a Windows app. Files are processed locally with WebAssembly, so nothing is uploaded. In testing, a 35.5 MB scan compressed to 1.95 MB. The <a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/IHatePDF/blob/main/docs/TEST_REPORT.md">test report</a> lists 80 passing checks and 0 network requests.</p>
+<p>TypeScript, React, Vite, Tailwind, pdf-lib, pdf.js, Electron.</p>
+<p><strong><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Wisperno">Wisperno</a></strong></p>
+<p>Offline push-to-talk dictation for Windows. Whisper large-v3-turbo runs on a local GPU, and a small local model cleans up the text. On my RTX 4070 Laptop GPU (8 GB) the default preset takes about 0.82 s per 100 words and uses about 3.5 GB of VRAM. Methods and all presets are in the <a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Wisperno/blob/main/BENCHMARKS.md">benchmarks</a>.</p>
+<p>Python, PySide6, CUDA, faster-whisper, llama.cpp.</p>
+<h2>Also</h2>
+<ul>
+<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/unidoc-vault">UniDoc Vault</a>: client-side document compression and encryption for university admission uploads (Next.js, React, TypeScript).</li>
+<li><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Python-Html-Cheat-Sheet">Python Cheat Sheet Central</a>: an offline-capable PWA dashboard of Python cheat sheets.</li>
+</ul>
+<h2>Contact</h2>
+<p><a target="_blank" rel="noopener noreferrer" href="https://devbhamaria.com">devbhamaria.com</a> | <a target="_blank" rel="noopener noreferrer" href="mailto:dev.bhamaria@gmail.com">dev.bhamaria@gmail.com</a> | <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab">LinkedIn</a></p>
+</article></div>
+    <div class="gh-view" data-gh-view="repos" hidden><div class="gh-repos-h"><b>6</b> repositories</div><ul class="gh-repos">
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/portfolio">portfolio</a><span class="gh-vis">Public</span></div><p>Dev Bhamaria's portfolio site</p><div class="gh-meta"><span><i class="gh-lang l-js"></i>JavaScript</span><span>Updated Oct 11</span></div></li>
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Burthcer">Burthcer</a><span class="gh-vis">Public</span></div><p>Profile README</p><div class="gh-meta"><span>Updated Oct 11</span></div></li>
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/IHatePDF">IHatePDF</a><span class="gh-vis">Public</span></div><p>100% client-side, zero-server PDF toolkit (28 tools): merge, split, protect, convert, redact. No uploads, no backend, no telemetry.</p><div class="gh-meta"><span><i class="gh-lang l-ts"></i>TypeScript</span><span>MIT License</span><span>Updated Sep 30</span></div></li>
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Wisperno">Wisperno</a><span class="gh-vis">Public</span></div><p>100% offline, GPU-accelerated push-to-talk dictation for Windows: local Whisper + local LLM, zero cloud.</p><div class="gh-meta"><span><i class="gh-lang l-py"></i>Python</span><span>MIT License</span><span>Updated Sep 9</span></div></li>
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/Python-Html-Cheat-Sheet">Python-Html-Cheat-Sheet</a><span class="gh-vis">Public</span></div><p>Offline-capable, themeable PWA dashboard of Python cheat sheets covering basics through Django, Pygame, and Git.</p><div class="gh-meta"><span><i class="gh-lang l-html"></i>HTML</span><span>MIT License</span><span>Updated Sep 4</span></div></li>
+<li class="gh-repo"><div class="gh-repo-h"><a target="_blank" rel="noopener noreferrer" href="https://github.com/Burthcer/unidoc-vault">unidoc-vault</a><span class="gh-vis">Public</span></div><p>Client-side document compression &amp; encryption vault for university admission uploads, built with Next.js, React, and TypeScript.</p><div class="gh-meta"><span><i class="gh-lang l-ts"></i>TypeScript</span><span>MIT License</span><span>Updated Sep 4</span></div></li>
+</ul></div>
+<!-- gh:end -->
+  </div>
+  <div class="sui-page cv" data-page="resume" hidden><iframe data-src="resume.html" title="Resume" loading="lazy"></iframe></div>
+  <div class="sui-page li" data-page="linkedin" hidden>
+<!-- li:start -->
+    <div class="li-top"><i class="li-logo" aria-hidden="true">in</i></div>
+    <div class="li-card">
+      <div class="li-band"></div>
+      <svg class="li-av" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="32" fill="#2b3036"/><circle cx="32" cy="25" r="10" fill="#6b7c8f"/><path d="M12 56c2-12 11-17 20-17s18 5 20 17z" fill="#8aa0b6"/></svg>
+      <div class="li-body">
+        <div class="li-name"><h1>Dev Bhamaria</h1><span>He/Him</span></div>
+        <p class="li-head">Open-source developer building free, offline-first software | IHatePDF, Wisperno</p>
+        <p class="li-loc">Navi Mumbai, Maharashtra, India</p>
+        <p class="li-school">DY Patil Deemed To Be University Of Humanities And Sciences</p>
+        <div class="li-act"><a class="li-btn" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer">Connect</a><a class="li-btn ghost" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer">View full profile</a></div>
+      </div>
+    </div>
+    <section class="li-card li-sec"><h2>About</h2>
+      <p>I build free, open-source software that runs entirely on your own machine: no uploads, no accounts, no subscriptions.</p>
+      <p>IHatePDF is a set of 28 PDF tools (merge, split, compress, sign, redact, edit text in place and more) that run in the browser, or as a Windows app. Nothing is sent to a server. In testing, a 35.5 MB scan compressed to 1.95 MB at a 2 MB target. Its test report lists 80 passing checks and 0 network requests.</p>
+      <p>Wisperno is offline push-to-talk dictation for Windows. It runs Whisper large-v3-turbo on a local GPU and cleans up the text with a small local model. On my RTX 4070 Laptop GPU it takes about 0.82 s per 100 words.</p>
+      <p>I'm a first-year BCA student at D Y Patil Deemed to be University, Navi Mumbai. I like measuring things and publishing the results, so each project links to its test report or benchmarks.</p>
+      <p>Both projects are MIT-licensed. I'm open to collaborating on open-source projects and always learning.</p>
+      <p class="li-links">Work: <a href="https://devbhamaria.com" target="_blank" rel="noopener noreferrer">devbhamaria.com</a> | Code: <a href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">github.com/Burthcer</a> | Email: dev.bhamaria@gmail.com</p>
+    </section>
+    <section class="li-card li-sec"><h2>Featured</h2>
+      <div class="li-feat">
+        <a href="https://devbhamaria.com" target="_blank" rel="noopener noreferrer"><b>Dev Bhamaria: portfolio</b><span>My projects, resume and contact details. Offline-first apps: IHatePDF and Wisperno.</span><small>devbhamaria.com</small></a>
+        <a href="https://github.com/Burthcer/Wisperno" target="_blank" rel="noopener noreferrer"><b>Wisperno: offline push-to-talk dictation</b><span>Whisper runs on a local GPU for dictation on Windows. About 0.82 s per 100 words on an RTX 4070 Laptop GPU. Open source (MIT).</span><small>GitHub</small></a>
+        <a href="https://github.com/Burthcer/IHatePDF" target="_blank" rel="noopener noreferrer"><b>IHatePDF: 28 offline PDF tools</b><span>PDF tools that run in the browser or as a Windows app. Nothing is uploaded. Open source (MIT).</span><small>GitHub</small></a>
+      </div>
+    </section>
+    <section class="li-card li-sec"><h2>Activity</h2><p class="li-sub">4 followers</p>
+      <article class="li-post"><p>I wrote up how I tested IHatePDF on small machines. In version 1.3.0, Compress stopped on every scan at a 1 GB memory budget. In 1.3.1, a 500 MB scan compresses to 38.4 MB in about two minutes on the same budget.</p><p>The article also lists what still breaks. What surprised me was how much memory the app used. Next time I would design for low memory from the first day.</p><a class="li-link" href="https://dev.to/burthcer/what-happened-when-i-ran-my-pdf-tools-on-a-pc-with-1-gb-of-memory-3in7" target="_blank" rel="noopener noreferrer"><b>What happened when I ran my PDF tools on a PC with 1 GB of memory</b><small>dev.to</small></a></article>
+      <article class="li-post"><p>Hi, I'm Dev, a first-year BCA student in Navi Mumbai. I build free, open-source software that works offline.</p><p>Two projects so far: IHatePDF (v1.3.1, still in progress), 28 PDF tools that run in your browser with nothing uploaded; and Wisperno, push-to-talk dictation that runs Whisper on a local GPU, about 0.82 s per 100 words on my RTX 4070 Laptop GPU.</p><p>Both are MIT-licensed. More at devbhamaria.com</p><a class="li-link" href="https://github.com/Burthcer/IHatePDF" target="_blank" rel="noopener noreferrer"><b>GitHub: Burthcer/IHatePDF, a 100% client-side, zero-server PDF toolkit</b><small>github.com</small></a></article>
+    </section>
+    <section class="li-card li-sec"><h2>Education</h2>
+      <b class="li-t">DY Patil Deemed To Be University Of Humanities And Sciences</b>
+      <p class="li-sub">Bachelor Of Computer Applications (BCA), Information Technology<br>Aug 2026 to Dec 2029</p>
+      <p>First-year student. Building open-source, offline-first software alongside my coursework: IHatePDF and Wisperno.</p>
+    </section>
+    <section class="li-card li-sec"><h2>Projects</h2>
+      <article class="li-proj"><b class="li-t">IHatePDF</b>
+        <p>28 PDF tools that run in the browser tab or as a Windows desktop app. Files are processed locally with WebAssembly, so nothing is uploaded. Includes in-place text editing, compression to a target size (35.5 MB to 1.95 MB in testing), offline file sharing to a phone, and a memory fail-safe for low-RAM PCs. v1.3.1; 80 checks passing in the published test report.</p>
+        <p class="li-sub">Built with: TypeScript, React, Vite, Tailwind, pdf-lib, pdf.js, WebAssembly, Electron.</p>
+        <p class="li-sub">Open source (MIT licence). Code: <a href="https://github.com/Burthcer/IHatePDF" target="_blank" rel="noopener noreferrer">github.com/Burthcer/IHatePDF</a></p></article>
+      <article class="li-proj"><b class="li-t">Wisperno</b>
+        <p>Offline push-to-talk dictation for Windows. Whisper large-v3-turbo runs on a local CUDA GPU, with a quantized Qwen2.5-1.5B model for text cleanup. Measured on an RTX 4070 Laptop GPU (8 GB): about 0.82 s per 100 words, about 3.5 GB VRAM. Includes a live transcription mode.</p>
+        <p class="li-sub">Built with: Python 3.12, PySide6, CUDA, faster-whisper, llama-cpp-python.</p>
+        <p class="li-sub">Open source (MIT licence; third-party models keep their own licences). Code: <a href="https://github.com/Burthcer/Wisperno" target="_blank" rel="noopener noreferrer">github.com/Burthcer/Wisperno</a></p></article>
+    </section>
+    <section class="li-card li-sec"><h2>Languages</h2><p><b class="li-t">English</b></p><p><b class="li-t">Hindi</b></p></section>
+<!-- li:end -->
+  </div>
+  <div class="sui-page dv" data-page="devto" hidden>
+<!-- dv:start -->
+<div class="dv-top"><i class="dv-logo" aria-hidden="true">DEV</i></div>
+    <div class="dv-card"><div class="dv-band"></div><img class="dv-av" src="assets/projects/devto-avatar.webp" alt="" width="64" height="64">
+      <div class="dv-head"><h1>Dev Bhamaria</h1><a class="dv-follow" href="https://dev.to/burthcer" target="_blank" rel="noopener noreferrer">Follow</a></div>
+      <p class="dv-sum">Open-source developer building free, offline-first software: IHatePDF and Wisperno. First-year BCA student in Navi Mumbai.</p>
+      <p class="dv-meta"><span>Navi Mumbai, India</span><span>Joined on Oct 11, 2026</span><a target="_blank" rel="noopener noreferrer" href="https://devbhamaria.com">devbhamaria.com</a></p>
+    </div>
+    <div class="dv-cols"><aside class="dv-side">
+      <h2>Education</h2><p>D Y Patil Deemed to be University (BCA, Aug 2026 to 2029)</p>
+      <h2>Currently hacking on</h2><p>IHatePDF, an offline PDF toolkit that runs in the browser</p>
+      <h2>Available for</h2><p>Collaborating on open-source projects</p>
+      <p class="dv-count"><b>1</b> post published</p>
+    </aside><ul class="dv-posts">
+<li class="dv-post"><a target="_blank" rel="noopener noreferrer" href="https://dev.to/burthcer/what-happened-when-i-ran-my-pdf-tools-on-a-pc-with-1-gb-of-memory-3in7"><b>What happened when I ran my PDF tools on a PC with 1 GB of memory</b></a><div class="dv-tags"><span>#opensource</span><span>#webdev</span><span>#testing</span><span>#pdf</span></div><small>Oct 11 &middot; 2 min read</small></li>
+</ul></div>
+<!-- dv:end -->
+  </div>
+</div>
 
 <header class="nav">
   <a class="brand mag" href="#top">Dev Bhamaria<i>.</i></a>
-  <nav aria-label="Sections">
+  <button class="nav-menu" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Open sections menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="l1" d="M5 9h14"/><path class="l3" d="M5 15h14"/></svg></button>
+  <nav aria-label="Sections" id="navlinks">
     <a href="#work" data-nav><b>01</b>Work</a>
     <a href="#ideas" data-nav><b>02</b>Ideas</a>
     <a href="#stack" data-nav><b>03</b>Stack</a>
     <a href="#education" data-nav><b>04</b>Education</a>
-    <a href="#contact" data-nav><b>05</b>Contact</a>
+    <a href="#outlook" data-nav><b>05</b>Outlook</a>
+    <a href="#contact" data-nav><b>06</b>Contact</a>
     <button class="nav-tour" id="tour" type="button" aria-pressed="false" title="A guided walk through the site. Scroll, press a key or tap to take over.">
       <span class="as-ic" aria-hidden="true"><i></i><i></i></span><span class="as-l">Auto-scroll</span>
     </button>
   </nav>
-  <a class="nav-resume mag" href="resume.html" data-resume>Resume <span aria-hidden="true">&darr;</span></a>
+  <a class="nav-resume mag" href="resume.html" data-resume>Resume <span aria-hidden="true">&nearr;</span></a>
 </header>
 
 <main id="main">
 
   <!-- 00 Intro -->
   <section class="hero" id="top" data-stop data-file="README.TXT" data-sub="Own your software" data-tags="START HERE · OFFLINE" aria-labelledby="hero-h">
-    <div class="hero-top reveal"><span><i class="dot"></i>Dev Dheeren Bhamaria</span><span>BCA &middot; D Y Patil Deemed to be University &middot; Navi Mumbai</span></div>
+    <div class="hero-top reveal"><span>Offline-first app developer</span><span>BCA &middot; D Y Patil Deemed to be University &middot; Navi Mumbai</span></div>
     <div class="hero-main">
       <p class="hero-sub reveal">Free, open-source tools that work with the Wi-Fi switched off.</p>
       <h1 id="hero-h" data-split="chars"><span class="l">Own</span> <span class="l">your</span> <span class="l">software<span class="stop">.</span></span></h1>
@@ -173,7 +309,9 @@
           <a class="btn mag" href="resume.html" data-resume>Resume <span aria-hidden="true">&nearr;</span></a>
           <button class="btn mag" type="button" data-copy="dev.bhamaria@gmail.com" aria-label="Copy email address dev.bhamaria@gmail.com"><span data-copy-label>dev.bhamaria@gmail.com</span></button>
         </div>
+        <button class="play-hint reveal" type="button" data-play>Play a short offline game</button>
       </div>
+      <div class="hero-stage" id="heroStage" aria-hidden="true"></div>
     </div>
     <div class="facts reveal" role="list">
       <div class="fact" role="listitem"><b><span data-count="2">2</span></b><span>apps shipped,<br>both free</span></div>
@@ -207,10 +345,10 @@
     </ol>
 
     <!-- ============ IHatePDF ============ -->
-    <article class="proj" id="ihatepdf" data-stop data-file="IHATEPDF.EXE" data-sub="28 PDF tools, no upload" data-tags="WASM · MIT · v1.3.1" aria-labelledby="ihp-h">
+    <article class="proj" id="ihatepdf" data-stop data-file="IHATEPDF.EXE" data-repo="Burthcer/IHatePDF" data-desc="Twenty-eight PDF tools that run inside your browser tab. Nothing is uploaded, because there is no server." data-sub="28 PDF tools, no upload" data-tags="WASM · MIT · v1.3.1" aria-labelledby="ihp-h">
       <div class="proj-name" data-slide="4 -14"><h3 id="ihp-h">IHatePDF</h3><span class="o" aria-hidden="true">IHatePDF</span></div>
       <header class="proj-head reveal">
-        <div class="proj-id"><img src="assets/projects/ihatepdf-icon.png" alt="IHatePDF app icon" width="48" height="48"><span>Project 01 of 02<br>Web app + Windows desktop app &middot; v1.3.1</span></div>
+        <div class="proj-id"><img src="assets/projects/ihatepdf-icon.png" alt="" width="48" height="48"><span>Project 01 of 02<br>Web app + Windows desktop app &middot; v1.3.1</span></div>
         <p class="proj-pitch">Twenty-eight PDF tools that run inside your browser tab. Nothing is uploaded, because there is no server.</p>
         <div class="proj-actions">
           <a class="btn solid mag" href="https://github.com/Burthcer/IHatePDF" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">&nearr;</span></a>
@@ -260,13 +398,13 @@
             <div class="vcap"><span data-cap>Home: every tool on one page</span><span class="vcount" data-count-label>1 / 7</span></div>
           </div>
           <div class="thumbs" role="tablist" aria-label="IHatePDF screenshots">
-            <button role="tab" aria-selected="true" data-src="assets/projects/ihatepdf-hd-home.webp" data-alt="IHatePDF home screen listing the PDF tools" data-cap="Home: every tool on one page"><img src="assets/projects/ihatepdf-hd-home.webp" alt="IHatePDF home screen listing the PDF tools" loading="lazy"><span>Home</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-edit.webp" data-alt="The PDF editor with a document open, page thumbnails and editing tools" data-cap="Edit PDF: double-click any text to retype it"><img src="assets/projects/ihatepdf-hd-edit.webp" alt="The PDF editor with a document open, page thumbnails and editing tools" loading="lazy"><span>Edit text</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-merge.webp" data-alt="Merging three PDFs, with drag-to-reorder" data-cap="Merge: three files, drag to reorder"><img src="assets/projects/ihatepdf-hd-merge.webp" alt="Merging three PDFs, with drag-to-reorder" loading="lazy"><span>Merge</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-organize.webp" data-alt="Organizing pages with draggable thumbnails" data-cap="Organize: reorder, rotate, duplicate or delete pages"><img src="assets/projects/ihatepdf-hd-organize.webp" alt="Organizing pages with draggable thumbnails" loading="lazy"><span>Organize</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-compress.webp" data-alt="Compression levels: light, balanced, smallest and custom size" data-cap="Compress: pick a level or a target size"><img src="assets/projects/ihatepdf-hd-compress.webp" alt="Compression levels: light, balanced, smallest and custom size" loading="lazy"><span>Compress</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-protect.webp" data-alt="Protecting a PDF with AES-256 encryption and a password" data-cap="Protect: AES-256 encryption with a password"><img src="assets/projects/ihatepdf-hd-protect.webp" alt="Protecting a PDF with AES-256 encryption and a password" loading="lazy"><span>Protect</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-share.webp" data-alt="Share to phone setup over Wi-Fi, hotspot or Bluetooth" data-cap="Share to phone: Wi-Fi, hotspot or Bluetooth, no internet"><img src="assets/projects/ihatepdf-hd-share.webp" alt="Share to phone setup over Wi-Fi, hotspot or Bluetooth" loading="lazy"><span>Share</span></button>
+            <button role="tab" aria-selected="true" data-src="assets/projects/ihatepdf-hd-home.webp" data-alt="IHatePDF home screen listing the PDF tools" data-cap="Home: every tool on one page"><img src="assets/projects/ihatepdf-hd-home.webp" alt="" loading="lazy"><span>Home</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-edit.webp" data-alt="The PDF editor with a document open, page thumbnails and editing tools" data-cap="Edit PDF: double-click any text to retype it"><img src="assets/projects/ihatepdf-hd-edit.webp" alt="" loading="lazy"><span>Edit text</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-merge.webp" data-alt="Merging three PDFs, with drag-to-reorder" data-cap="Merge: three files, drag to reorder"><img src="assets/projects/ihatepdf-hd-merge.webp" alt="" loading="lazy"><span>Merge</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-organize.webp" data-alt="Organizing pages with draggable thumbnails" data-cap="Organize: reorder, rotate, duplicate or delete pages"><img src="assets/projects/ihatepdf-hd-organize.webp" alt="" loading="lazy"><span>Organize</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-compress.webp" data-alt="Compression levels: light, balanced, smallest and custom size" data-cap="Compress: pick a level or a target size"><img src="assets/projects/ihatepdf-hd-compress.webp" alt="" loading="lazy"><span>Compress</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-protect.webp" data-alt="Protecting a PDF with AES-256 encryption and a password" data-cap="Protect: AES-256 encryption with a password"><img src="assets/projects/ihatepdf-hd-protect.webp" alt="" loading="lazy"><span>Protect</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/ihatepdf-hd-share.webp" data-alt="Share to phone setup over Wi-Fi, hotspot or Bluetooth" data-cap="Share to phone: Wi-Fi, hotspot or Bluetooth, no internet"><img src="assets/projects/ihatepdf-hd-share.webp" alt="" loading="lazy"><span>Share</span></button>
           </div>
         </div>
       </section>
@@ -322,10 +460,10 @@
     </article>
 
     <!-- ============ Wisperno ============ -->
-    <article class="proj" id="wisperno" data-stop data-file="WISPERNO.EXE" data-sub="Dictation on your GPU" data-tags="CUDA · 0.82 S / 100 WORDS" aria-labelledby="wsp-h">
+    <article class="proj" id="wisperno" data-stop data-file="WISPERNO.EXE" data-repo="Burthcer/Wisperno" data-desc="Push-to-talk dictation for Windows that runs on your own GPU. Your voice never leaves the machine." data-sub="Dictation on your GPU" data-tags="CUDA · 0.82 S / 100 WORDS" aria-labelledby="wsp-h">
       <div class="proj-name" data-slide="-16 2"><h3 id="wsp-h">Wisperno</h3><span class="o" aria-hidden="true">Wisperno</span></div>
       <header class="proj-head reveal">
-        <div class="proj-id"><img src="assets/projects/wisperno-icon.png" alt="Wisperno app icon" width="48" height="48"><span>Project 02 of 02<br>Windows desktop app &middot; CUDA &middot; Python</span></div>
+        <div class="proj-id"><img src="assets/projects/wisperno-icon.png" alt="" width="48" height="48"><span>Project 02 of 02<br>Windows desktop app &middot; CUDA &middot; Python</span></div>
         <p class="proj-pitch">Push-to-talk dictation for Windows that runs on your own GPU. Your voice never leaves the machine.</p>
         <div class="proj-actions">
           <a class="btn solid mag" href="https://github.com/Burthcer/Wisperno" target="_blank" rel="noopener noreferrer">Source code <span aria-hidden="true">&nearr;</span></a>
@@ -375,10 +513,10 @@
             <div class="vcap"><span data-cap>Transforms: Polish, Prompt Engineer, Grammar Correct and your own prompts, each on its own hotkey</span><span class="vcount" data-count-label>1 / 4</span></div>
           </div>
           <div class="thumbs" role="tablist" aria-label="Wisperno screenshots">
-            <button role="tab" aria-selected="true" data-src="assets/projects/wisperno-transforms.webp" data-alt="Wisperno Transforms tab with five transform cards and their Alt hotkeys" data-cap="Transforms: Polish, Prompt Engineer, Grammar Correct and your own prompts, each on its own hotkey"><img src="assets/projects/wisperno-transforms.webp" alt="Wisperno Transforms tab with five transform cards and their Alt hotkeys" loading="lazy"><span>Transforms</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-systemusage.webp" data-alt="Wisperno System Usage tab showing 3.3 GB VRAM use and the active Whisper and Qwen engines" data-cap="System Usage: live VRAM and RAM, with Whisper and Qwen both running on the GPU"><img src="assets/projects/wisperno-systemusage.webp" alt="Wisperno System Usage tab showing 3.3 GB VRAM use and the active Whisper and Qwen engines" loading="lazy"><span>System usage</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-settings.webp" data-alt="Wisperno Settings tab with dictation triggers and silence detection" data-cap="Settings: tap-to-toggle or hold-to-talk, auto-stop on silence, local AI cleanup"><img src="assets/projects/wisperno-settings.webp" alt="Wisperno Settings tab with dictation triggers and silence detection" loading="lazy"><span>Settings</span></button>
-            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-snippets.webp" data-alt="Wisperno Snippets and Voice Macros tab" data-cap="Snippets: say a trigger phrase and the saved text is typed instantly"><img src="assets/projects/wisperno-snippets.webp" alt="Wisperno Snippets and Voice Macros tab" loading="lazy"><span>Snippets</span></button>
+            <button role="tab" aria-selected="true" data-src="assets/projects/wisperno-transforms.webp" data-alt="Wisperno Transforms tab with five transform cards and their Alt hotkeys" data-cap="Transforms: Polish, Prompt Engineer, Grammar Correct and your own prompts, each on its own hotkey"><img src="assets/projects/wisperno-transforms.webp" alt="" loading="lazy"><span>Transforms</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-systemusage.webp" data-alt="Wisperno System Usage tab showing 3.3 GB VRAM use and the active Whisper and Qwen engines" data-cap="System Usage: live VRAM and RAM, with Whisper and Qwen both running on the GPU"><img src="assets/projects/wisperno-systemusage.webp" alt="" loading="lazy"><span>System usage</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-settings.webp" data-alt="Wisperno Settings tab with dictation triggers and silence detection" data-cap="Settings: tap-to-toggle or hold-to-talk, auto-stop on silence, local AI cleanup"><img src="assets/projects/wisperno-settings.webp" alt="" loading="lazy"><span>Settings</span></button>
+            <button role="tab" aria-selected="false" tabindex="-1" data-src="assets/projects/wisperno-snippets.webp" data-alt="Wisperno Snippets and Voice Macros tab" data-cap="Snippets: say a trigger phrase and the saved text is typed instantly"><img src="assets/projects/wisperno-snippets.webp" alt="" loading="lazy"><span>Snippets</span></button>
           </div>
         </div>
       </section>
@@ -449,7 +587,7 @@
   </section>
 
   <!-- 03 Stack -->
-  <section class="sec" id="stack" data-stop data-file="STACK.CFG" data-sub="TS · Python · WASM · CUDA" data-tags="12 TOOLS" aria-labelledby="stack-h">
+  <section class="sec" id="stack" data-stop data-file="STACK.CFG" data-land="profile" data-sub="TS · Python · WASM · CUDA" data-tags="12 TOOLS" aria-labelledby="stack-h">
     <header class="sec-head">
       <div class="sec-num reveal"><b>03</b><span>Stack</span></div>
       <h2 id="stack-h" data-split>What I build with.</h2>
@@ -483,7 +621,7 @@
         <img class="uni-logo" src="assets/icons/dypatil-logo.png" alt="D Y Patil Deemed to be University, Navi Mumbai" width="618" height="231" loading="lazy">
         <p class="degree"><small>Degree &middot; Aug 2026 to 2029 (expected)</small>Bachelor of Computer Applications</p>
         <p>School of Humanities and Sciences. Coursework plus what I chase on my own: systems programming, operating-system internals, mobile apps, and taking software apart to see how it works.</p>
-        <span class="status"><i aria-hidden="true"></i>Current student</span>
+        <span class="status">Current student</span>
       </div>
       <div class="reveal">
         <p class="addr-lbl">Campus</p>
@@ -493,31 +631,44 @@
   </section>
 
   <!-- 05 Contact -->
-  <section class="sec contact" id="contact" data-stop data-file="CONTACT.TXT" data-sub="dev.bhamaria@gmail.com" data-tags="I REPLY" aria-labelledby="contact-h">
+  <section class="sec outlook" id="outlook" data-stop data-file="FUTURE.TXT" data-sub="No more renting software" data-tags="OWNED · OFFLINE" aria-labelledby="outlook-h">
     <header class="sec-head">
-      <div class="sec-num reveal"><b>05</b><span>Contact</span></div>
+      <div class="sec-num reveal"><b>05</b><span>Outlook</span></div>
+      <h2 id="outlook-h" data-split>What comes next.</h2>
+    </header>
+    <p class="statement">Companies will stop renting software by the month. The tools they need will be built once, owned outright and run on their own machines, with no subscription and no internet. That is the software I want to build.</p>
+  </section>
+
+  <section class="sec contact" id="contact" data-stop data-file="CONTACT.TXT" data-land="contact" data-sub="dev.bhamaria@gmail.com" data-tags="I REPLY" aria-labelledby="contact-h">
+    <header class="sec-head">
+      <div class="sec-num reveal"><b>06</b><span>Contact</span></div>
       <h2 id="contact-h" data-split>Write to me.</h2>
     </header>
     <div class="contact-body">
-      <a class="mail-big reveal" href="mailto:dev.bhamaria@gmail.com">dev.bhamaria@gmail.com</a>
+      <a class="mail-big reveal" href="mailto:dev.bhamaria@gmail.com" data-shows="mail">dev.bhamaria@gmail.com</a>
       <p class="lede reveal">Want to talk about offline-first apps, send a pull request to IHatePDF or Wisperno, or work on something together? My inbox is open, and I reply.</p>
       <div class="ctas reveal">
-        <button class="btn solid mag" type="button" data-copy="dev.bhamaria@gmail.com" aria-label="Copy email address dev.bhamaria@gmail.com"><span data-copy-label>Copy email</span></button>
-        <a class="btn mag" href="resume.html" data-resume>Resume <span aria-hidden="true">&nearr;</span></a>
-        <a class="btn mag" href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">github.com/Burthcer <span aria-hidden="true">&nearr;</span></a>
-        <a class="btn mag" data-link="linkedin" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">&nearr;</span></a>
+        <button class="btn solid mag" type="button" data-copy="dev.bhamaria@gmail.com" data-shows="mail" aria-label="Copy email address dev.bhamaria@gmail.com"><svg class="ic st" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="m4 7.500 8 6 8-6"/></svg><span data-copy-label>Copy email</span></button>
+        <a class="btn mag" href="resume.html" data-resume data-shows="resume"><svg class="ic st" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 15.500h5"/></svg>Resume <span aria-hidden="true">&nearr;</span></a>
+        <a class="btn mag" href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer" data-shows="profile"><svg class="ic" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0a8 8 0 0 0-2.53 15.59c.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.06-.49.06-.49.8.06 1.23.83 1.23.83.72 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.65-.89-3.65-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 8 0Z"/></svg>GitHub <span aria-hidden="true">&nearr;</span></a>
+        <a class="btn mag" data-link="linkedin" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer" data-shows="linkedin"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn <span aria-hidden="true">&nearr;</span></a>
+        <a class="btn mag" data-link="devto" href="https://dev.to/burthcer" target="_blank" rel="noopener noreferrer" data-shows="devto"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5 3h14a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H5a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4zM5.2 8.6v6.8h1.7c1.5 0 2.3-1.3 2.3-3.4S8.400 8.600 6.900 8.600H5.200zm1.200 1.100h.5c.8 0 1.200.9 1.200 2.300S7.700 14.300 6.900 14.300h-.5V9.700zM10.600 8.600v6.800h3.200v-1.100h-2V12.500h1.700v-1.100h-1.700V9.700h2V8.600h-3.200zM14.600 8.600l1.700 6.800h1.300l1.700-6.800h-1.300l-1 4.600-1.100-4.600h-1.300z"/></svg>DEV <span aria-hidden="true">&nearr;</span></a>
       </div>
+      <div class="contact-stage" id="contactStage" aria-hidden="true"></div>
     </div>
-    <footer class="colophon">
-      <div><b>Colophon</b>Inter Tight and JetBrains Mono. Hand-written HTML, CSS and JS. The disk is built in Three.js from code, no model files.</div>
-      <div><b>Offline</b>No trackers, no cookies, no CDN. This page works with the Wi-Fi off. <button class="linkish" type="button" data-play>Play Stay Offline</button> or <button class="linkish" type="button" data-drive>open drive A:</button></div>
-      <div><b>&copy;</b>Dev Dheeren Bhamaria. Code released under the MIT License.</div>
+    <footer class="foot">
+      <div class="foot-grid">
+        <div class="foot-brand"><a class="foot-name" href="#top">Dev Bhamaria<span>.</span></a><p>Free, open-source software that works with the Wi-Fi switched off.</p></div>
+        <nav class="foot-col" aria-label="Page sections"><h2>Sections</h2><a href="#work">Work</a><a href="#ideas">Ideas</a><a href="#stack">Stack</a><a href="#education">Education</a><a href="#outlook">Outlook</a><a href="#contact">Contact</a></nav>
+        <div class="foot-col"><h2>Elsewhere</h2><a href="https://github.com/Burthcer" target="_blank" rel="noopener noreferrer">GitHub</a><a data-link="linkedin" href="https://www.linkedin.com/in/dev-bhamaria-22b1503ab" target="_blank" rel="noopener noreferrer">LinkedIn</a><a data-link="devto" href="https://dev.to/burthcer" target="_blank" rel="noopener noreferrer">DEV</a><a href="mailto:dev.bhamaria@gmail.com">Email</a><a href="resume.html">Resume</a></div>
+      </div>
+      <div class="foot-bar"><span>&copy; 2026 Dev Bhamaria. Code released under the MIT License.</span><button class="linkish" type="button" data-drive>open drive A:</button><a class="foot-top" href="#top">Back to top <span aria-hidden="true">&uarr;</span></a></div>
     </footer>
   </section>
 </main>
 
 <dialog class="lightbox" id="lightbox" aria-label="Screenshot">
-  <img alt="Enlarged screenshot">
+  <img alt="">
   <p class="lb-cap"></p>
   <button class="lb-nav lb-prev" type="button" aria-label="Previous screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5m6-6-6 6 6 6"/></svg></button>
   <button class="lb-nav lb-next" type="button" aria-label="Next screenshot"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
@@ -527,6 +678,7 @@
 
 <script src="assets/js/links.js"></script>
 <script src="assets/js/three.min.js"></script>
+<script src="assets/js/shots.js"></script>
 <script src="assets/js/portfolio3d.js"></script>
 <script src="assets/js/drive.js"></script>
 <script src="assets/js/game.js"></script>

@@ -10,7 +10,7 @@ a { color: inherit; }
 .bar a { color: #ecebe6; text-decoration: none; padding: 9px 14px; border-radius: 999px; border: 1px solid #3a3935; display: inline-block; }
 .bar a:hover { border-color: #ff5714; }
 .bar div { display: flex; gap: 8px; }
-.bar .dl { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='%23ff5714'/%3E%3C/svg%3E") repeat border-box; border-color: transparent; color: #0c0c0b; font-weight: 600; }   /* an image tile, so a forced dark mode on phones cannot turn it red */
+.bar .dl { background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10'%3E%3Crect width='10' height='10' fill='%23ff5714'/%3E%3C/svg%3E") repeat border-box; border-color: transparent; color: #0c0c0b; font-weight: 600; }   /* an image, so a forced dark mode on phones cannot turn it red */
 
 /* A4 sheet on screen; the same box prints as the page */
 .page { width: 210mm; min-height: 297mm; margin: 28px auto 48px; padding: 16mm 17mm; background: #fff; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); }
@@ -54,3 +54,26 @@ li::marker { color: var(--acc); }
 .nf h1 { font-size: clamp(40px, 8vw, 64px); color: #ecebe6; }
 .nf p { color: #aaa79e; font-size: 17px; }
 .nf a { color: #ecebe6; text-underline-offset: 3px; }
+/* inside the portfolio's laptop browser: keep the bar for the theme switch and the PDF, drop the links that leave */
+.embedded .bar { padding: 8px 12px; }
+.embedded .bar [data-back], .embedded .bar a[href^="mailto:"] { display: none; }
+.embedded .bar { justify-content: flex-end; }
+
+/* theme switch */
+.bar button.theme { display: inline-flex; align-items: center; gap: 7px; padding: 9px 14px; border-radius: 999px; border: 1px solid #3a3935; background: none; color: #ecebe6; font: inherit; cursor: pointer; }
+.bar button.theme:hover { border-color: #ff5714; }
+.bar button.theme svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+[data-theme="dark"] .bar button.theme .moon, [data-theme="light"] .bar button.theme .sun { display: none; }
+
+/* dark sheet (the default); print always uses the light one */
+[data-theme="dark"] { --ink: #ecebe6; --ink2: #b4b1a8; --ink3: #7f7c74; --hair: #2e2d2a; --acc: #ff6a2c; }
+[data-theme="dark"] .page { background: #151514; box-shadow: 0 30px 80px rgba(0, 0, 0, .6), 0 0 0 1px #262624; }
+@media print { [data-theme="dark"] { --ink: #141412; --ink2: #4a4843; --ink3: #8a867d; --hair: #dedbd3; --acc: #e0480b; } [data-theme="dark"] .page { background: #fff; box-shadow: none; } }
+
+/* phones: one tidy row, no wrapped labels */
+@media (max-width: 600px) {
+  .bar { padding: 10px 12px; gap: 8px; }
+  .bar div { gap: 6px; }
+  .bar a, .bar button.theme { padding: 9px 12px; font-size: 12px; white-space: nowrap; }
+  .bar .lg, .bar button.theme span { display: none; }
+}
