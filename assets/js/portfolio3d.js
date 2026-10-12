@@ -105,9 +105,17 @@
     const bar = $('.boot-bar i', boot), pct = $('.boot-pct', boot), log = $('.boot-log', boot);
     const lines = ['A:\\> mount 3.5" HD diskette', 'network adapter ........ off', 'telemetry .............. none', 'bytes uploaded ......... 0', 'loading dev.bhamaria ...'];
     let t0 = 0, done = false;
+    // the page underneath must not scroll while the loading screen is up (touch swipes and the wheel would move it)
+    const hold = e => e.preventDefault();
+    root.classList.add('booting');
+    addEventListener('touchmove', hold, { passive: false });
+    addEventListener('wheel', hold, { passive: false });
     const finish = () => {
       if (done) return;
       done = true;
+      root.classList.remove('booting');
+      removeEventListener('touchmove', hold);
+      removeEventListener('wheel', hold);
       boot.classList.add('done');
       begin();
       setTimeout(() => boot.remove(), 1100);
@@ -441,6 +449,24 @@
 
 
   /* ================= scroll-linked motion ================= */
+  // university logo: drawn on its white plate in a canvas. Forced dark modes (Samsung Internet) grey out the white plate
+  // and dim the logo image, but leave canvas pixels alone (tested on a real phone)
+  (() => {
+    const img = $('.uni-logo');
+    if (!img) return;
+    const draw = () => {
+      if (!img.naturalWidth) return;
+      const k = img.naturalWidth / 300, px = Math.round(20 * k), py = Math.round(14 * k), r = 12 * k;
+      const c = document.createElement('canvas');
+      c.width = img.naturalWidth + px * 2; c.height = img.naturalHeight + py * 2;
+      const g = c.getContext('2d');
+      g.fillStyle = '#fff'; g.beginPath(); g.roundRect(0, 0, c.width, c.height, r); g.fill();
+      g.drawImage(img, px, py);
+      c.className = 'uni-logo cv'; c.setAttribute('role', 'img'); c.setAttribute('aria-label', img.alt);
+      img.replaceWith(c);
+    };
+    if (img.complete) draw(); else img.addEventListener('load', draw, { once: true });
+  })();
   const nav = $('.nav'), bar = $('.progress'), track = $('.marquee-track');
   const navLinks = $$('[data-nav]'), navSecs = navLinks.map(a => $(a.getAttribute('href')));
   const slides = $$('[data-slide]').map(el => { const [a, b] = el.dataset.slide.split(' ').map(Number); return { el, a, b }; });

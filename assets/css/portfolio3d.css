@@ -44,6 +44,8 @@ em { font-style: normal; }
 .boot-bar i { display: block; height: 100%; background: var(--acc-fill); transform-origin: 0 50%; transform: scaleX(0); }
 .boot.done { clip-path: inset(0 0 100% 0); transition: clip-path 1s var(--ease); }
 @keyframes bootfail { to { visibility: hidden; } }
+.booting, .booting body { overflow: hidden; overscroll-behavior: none; }   /* nothing scrolls under the loading screen */
+.boot { touch-action: none; }
 
 /* ---------- fixed chrome ---------- */
 .progress { position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 60; background: var(--acc-fill); transform-origin: 0 50%; transform: scaleX(0); }
@@ -352,6 +354,7 @@ kbd { display: inline-block; min-width: 30px; padding: 5px 9px; border: 1px soli
 .edu > div { padding: 28px 28px 28px 0; }
 .edu > div + div { padding-left: 28px; border-left: 1px solid var(--hair); --d: 1; }
 .uni-logo { width: 340px; max-width: 100%; height: auto; box-sizing: border-box; padding: 14px 20px; background: #fff; border-radius: 12px; }
+.uni-logo.cv { display: block; padding: 0; background: none; border-radius: 0; }
 .degree { margin: 30px 0 0; font-size: clamp(28px, 2.8vw, 44px); font-weight: 820; letter-spacing: -.03em; word-spacing: .08em; line-height: 1.02; }
 .degree small { display: block; margin-bottom: 12px; font: 500 12px var(--mono); letter-spacing: .05em; color: var(--ink3); text-transform: uppercase; }
 .edu p { color: var(--ink2); max-width: 34em; }
