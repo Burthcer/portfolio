@@ -930,3 +930,7 @@ a, button, [role="button"] { -webkit-tap-highlight-color: transparent; }   /* no
 .btn, .nav-resume, .nav-menu, .nav-tour, .ptabs button, .vnav, .pf-next, .pindex a { -webkit-user-select: none; user-select: none; }
 
 html { scrollbar-gutter: stable; }   /* the page width stays put when the scrollbar is hidden (loading screen, opened phone, dialogs) */
+
+.gh-badge { display: inline-flex; margin: 0 6px 6px 0; overflow: hidden; border: 1px solid #3d444d; border-radius: 6px; font: 600 11px ui-monospace, Consolas, monospace; color: #e6edf3 !important; text-decoration: none !important; }
+.gh-badge b { padding: 5px 9px; background: #2f3742; font-weight: 700; }
+.gh-badge span { padding: 5px 9px; }
