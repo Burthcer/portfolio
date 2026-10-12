@@ -1046,12 +1046,13 @@
       },
     };
 
-    /* ---- contact: a browser with three tabs (Gmail, GitHub, resume) that switches tabs like Edge/Chrome ----
-       GitHub and the resume are real screenshots (assets/js/shots.js, tools/capture-shots.js); Gmail is drawn, since it needs a login */
+    /* ---- contact: a browser with five tabs that switches tabs like Edge/Chrome ----
+       While the laptop moves, its 3D screen shows a flat picture of the REAL on-screen browser for the current tab (assets/img/screen-*.jpg, made by
+       tools/capture-screens.js), so when the live browser fades in over it nothing changes: no older screenshot, no blank screen. */
     const shotImg = {};
-    Object.entries(window.SHOTS || {}).forEach(([k, v]) => ['wide', 'tall'].forEach(s => {
-      const im = new Image(); im.onload = () => { shownSig = ''; }; im.src = v[s]; shotImg[k + s] = im;
-    }));
+    setTimeout(() => ['mail', 'resume', 'profile', 'linkedin', 'devto'].forEach(id => {
+      const im = new Image(); im.onload = () => { shownSig = ''; }; im.src = `assets/img/screen-${id}.jpg`; shotImg[id] = im;
+    }), 1200);   // after the page is up; Contact is far down the page
     const TABS = [
       { id: 'mail', title: 'New Message - Gmail', url: 'mail.google.com/mail/u/0/#inbox?compose=new' },
       { id: 'resume', title: 'Resume | Dev Bhamaria', url: 'devbhamaria.com/resume.html' },
@@ -1159,9 +1160,9 @@
     function browser(g, w, h, active, st) {
       g.fillStyle = '#202124'; g.fillRect(0, 0, w, h);
       const tall = dev.portrait, y0 = tall ? chromeTall(g, w, active) : chromeWide(g, w, active);
-      // while the device moves, the page area is just the page's own dark colour: the live browser (sharp, clickable) is the one picture of each page,
-      // so there is no older-looking screenshot that gets swapped for it a moment later
-      g.fillStyle = PAGE_BG[active] || '#0d1117'; g.fillRect(0, y0, w, h - y0);
+      const im = !tall && shotImg[active];
+      if (im && im.complete && im.naturalWidth) g.drawImage(im, 0, 0, w, h);   // the same picture the live browser shows
+      else { g.fillStyle = PAGE_BG[active] || '#0d1117'; g.fillRect(0, y0, w, h - y0); }
     }
     ['mail', 'profile', 'resume', 'linkedin', 'devto'].forEach(t => { S[t] = (g, w, h, k, d, st) => browser(g, w, h, t, st); });
     const URLS = { repo: d => 'https://github.com/' + d.repo, profile: () => 'https://github.com/Burthcer', linkedin: () => 'https://www.linkedin.com/in/dev-bhamaria-22b1503ab', devto: () => 'https://dev.to/burthcer', mail: () => 'mailto:dev.bhamaria@gmail.com', resume: () => 'resume.html' };
